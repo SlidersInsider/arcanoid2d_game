@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject greenPrefab;
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
+    public GameObject bonusPrefab;
     static Collider2D[] colliders = new Collider2D[50];
     static ContactFilter2D contactFilter = new ContactFilter2D();
     public GameDataScript gameData;
@@ -153,11 +154,12 @@ public class PlayerScript : MonoBehaviour
     {
         SetBackground();
         var yMax = Camera.main.orthographicSize * 0.8f;
-        var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.85f;
+        var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.70f;
         CreateBlocks(bluePrefab, xMax, yMax, level, 8);
         CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
         CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
         CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);
+        CreateBlocks(bonusPrefab, xMax, yMax, level, 3);
         CreateBalls();
     }
 
