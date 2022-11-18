@@ -40,4 +40,14 @@ public class GameDataScript : ScriptableObject
         music = PlayerPrefs.GetInt("music", 1) == 1;
         sound = PlayerPrefs.GetInt("sound", 1) == 1;
     }
+
+    public Dictionary<string, int> BonusDistribution = new Dictionary<string, int>()
+    {
+        {"Bonus", 10},
+        {"Slow", 20}, 
+        {"Fast", 20}, 
+        {"Plus1", 30}, 
+        {"Plus2", 15}, 
+        {"Plus10", 5} 
+    };
 }

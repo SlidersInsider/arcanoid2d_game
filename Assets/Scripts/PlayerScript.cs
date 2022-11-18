@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,17 +17,37 @@ public class PlayerScript : MonoBehaviour
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
     public GameObject bonusPrefab;
+    public GameObject XOPrefab; 
     static Collider2D[] colliders = new Collider2D[50];
     static ContactFilter2D contactFilter = new ContactFilter2D();
     public GameDataScript gameData;
     static bool gameStarted = false;
     AudioSource audioSrc;
     public AudioClip pointSound;
+
+    float yMaxS;
+    float xMaxS;
+
     int requiredPointsToBall
     {
         get 
         {
             return 400 + (level - 1) * 20;
+        }
+    }
+
+    public Collider2D[] GetColliders() => colliders; 
+    public float GetYMax() => yMaxS; 
+    public float GetXMax() => xMaxS; 
+
+    public void CheckXO(int points)
+    {
+        var xo = GameObject.FindGameObjectsWithTag("XO"); 
+        if (xo.All(x => x.GetComponent<XOScript>().textComponent.text == "X"))
+        {
+            for (int i = 0; i < xo.Length; ++i)
+                Destroy(xo[i]);
+            BlockDestroyed(points);
         }
     }
 
@@ -153,18 +174,20 @@ public class PlayerScript : MonoBehaviour
     void StartLevel()
     {
         SetBackground();
-        var yMax = Camera.main.orthographicSize * 0.8f;
-        var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.70f;
-        CreateBlocks(bluePrefab, xMax, yMax, level, 8);
-        CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
-        CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
-        CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);
-        CreateBlocks(bonusPrefab, xMax, yMax, level, 3);
+
+        CreateBlocks(XOPrefab, xMaxS, yMaxS, System.Math.Max(2, level / 2), 4);
+        CreateBlocks(bonusPrefab, xMaxS, yMaxS, level, 3);
+        CreateBlocks(bluePrefab, xMaxS, yMaxS, level, 6);
+        CreateBlocks(redPrefab, xMaxS, yMaxS, 1 + level, 8);
+        CreateBlocks(greenPrefab, xMaxS, yMaxS, 1 + level, 8);
+        CreateBlocks(yellowPrefab, xMaxS, yMaxS, 2 + level, 8);
         CreateBalls();
     }
 
     void Start()
     {
+        yMaxS = Camera.main.orthographicSize * 0.8f;
+        xMaxS = Camera.main.orthographicSize * Camera.main.aspect * 0.70f;
         audioSrc = Camera.main.GetComponent<AudioSource>();
         Cursor.visible = false;
         if (!gameStarted)

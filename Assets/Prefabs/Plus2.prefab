@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7192937280020697727}
   - component: {fileID: 3855207848517859634}
   - component: {fileID: 4216656362514604059}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.047169805, g: 0.046131473, b: 0.046131473, a: 1}
+  m_Color: {r: 0.9811321, g: 0.96879077, b: 0.96879077, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: +2
 --- !u!1 &2669812629701093796
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +92,8 @@ GameObject:
   - component: {fileID: 4174757912015832291}
   - component: {fileID: 6139352768773428421}
   - component: {fileID: 101052159752162612}
-  m_Layer: 0
+  - component: {fileID: 4143396290160450291}
+  m_Layer: 10
   m_Name: Plus2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 2669812629701093796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4503886146146617247}
@@ -155,9 +156,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c297c090aa8c0db4ab2a231dfc9625c0, type: 3}
-  m_Color: {r: 0.9716981, g: 0.8521446, b: 0.04277907, a: 1}
+  m_Color: {r: 0.025513189, g: 0.08004921, b: 0.4056604, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -176,13 +177,13 @@ CircleCollider2D:
   m_GameObject: {fileID: 2669812629701093796}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f041fabb9aecb754fa408cb4123c6823, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.63
+  m_Radius: 0.64
 --- !u!50 &101052159752162612
 Rigidbody2D:
   serializedVersion: 4
@@ -191,19 +192,39 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2669812629701093796}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4143396290160450291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2669812629701093796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd482b30eeaff74aba212b0c00eba73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textObject: {fileID: 0}
+  text: {fileID: 0}
+  bonusColor: {r: 0, g: 0, b: 0, a: 0}
+  textColor: {r: 0, g: 0, b: 0, a: 0}
+  hitSound: {fileID: 8300000, guid: 588ca978fa19e2246944aeb5d62c8b76, type: 3}
+  loseSound: {fileID: 8300000, guid: fe264a3e2dbcffe47a6d6bf44a0588d6, type: 3}
+  pointSound: {fileID: 8300000, guid: 4aeefa5609bb8f94c988cddc923ccd2b, type: 3}
+  gameData: {fileID: 11400000, guid: 704e55063aa69934399d0d895b98c1d1, type: 2}
 --- !u!1 &3047327823330826802
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +237,7 @@ GameObject:
   - component: {fileID: 2425499006077618611}
   - component: {fileID: 8233354294489944691}
   - component: {fileID: 4040037587770360359}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

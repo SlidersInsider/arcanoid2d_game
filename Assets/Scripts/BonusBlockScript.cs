@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
@@ -17,11 +18,25 @@ public class BonusBlockScript : MonoBehaviour
 
     Rigidbody2D rb;
 
+    private Dictionary<string, int> randToBonus;
+    private int sum; 
+
+    private System.Random r; 
+
     // Start is called before the first frame update
     void Start()
     {
+        r = new System.Random(); 
         audioSrc = Camera.main.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
+        randToBonus = new Dictionary<string, int>(); 
+        int x = 0; 
+        foreach (var bonus in gameData.BonusDistribution)
+        {
+            x += bonus.Value; 
+            randToBonus.Add(bonus.Key, x); 
+        }
+        sum = x; 
     }
 
     // Update is called once per frame
@@ -37,7 +52,18 @@ public class BonusBlockScript : MonoBehaviour
             audioSrc.PlayOneShot(hitSound, 5);
         }
         Destroy(gameObject);
-        var bonus = Instantiate(Bonuses[Random.Range(0, Bonuses.Length)], transform.position, Quaternion.identity);
+        double d = r.NextDouble() * sum; 
+        string s = ""; 
+        foreach (var item in randToBonus)
+        {
+            if (item.Value >= d)
+            {
+                s = item.Key;
+                break; 
+            }
+        }
+
+        var bonus = Instantiate(Array.Find(Bonuses, x => x.name == s), transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
