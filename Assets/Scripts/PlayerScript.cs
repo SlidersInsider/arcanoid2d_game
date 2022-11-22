@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -81,7 +83,23 @@ public class PlayerScript : MonoBehaviour
                 CreateBalls();
             }
             else
-            {
+            {  
+                gameData.topPlayers.Add(new KeyValuePair<string, int>(gameData.playerName, gameData.points));
+                if (gameData.topPlayers[gameData.topPlayers.Count - 1].Key == "") 
+                {
+                    string baseName = "no_name";
+                    int playerPoints = gameData.topPlayers[gameData.topPlayers.Count - 1].Value;
+                    gameData.topPlayers.RemoveAt(gameData.topPlayers.Count - 1);
+                    gameData.topPlayers.Add(new KeyValuePair<string, int>(baseName, playerPoints));
+                }
+                gameData.topPlayers.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
+                if (gameData.topPlayers.Count > 5) 
+                {
+                    gameData.topPlayers.RemoveAt(gameData.topPlayers.Count - 1);
+                }
+
+                gameData.SavePlayers(gameData.topPlayers);
+
                 gameData.Reset();
                 SceneManager.LoadScene("MainScene");
             }
@@ -229,9 +247,9 @@ public class PlayerScript : MonoBehaviour
     private void OnGUI()
     {
         GUI.Label(new Rect(5, 4, Screen.width - 10, 100), 
-            string.Format("<color=yellow><size=30>Level <b>{0}</b> Balls <b>{1}</b> Score <b>{2}</b></size></color>", 
-            gameData.level, gameData.balls, gameData.points));
-        GUIStyle style = new GUIStyle();
+            string.Format("<color=yellow><size=30>Level <b>{0}</b> Balls <b>{1}</b> Score <b>{2}</b> Player: <b>{3}</b></size></color>", 
+            gameData.level, gameData.balls, gameData.points, gameData.playerName));
+        /*GUIStyle style = new GUIStyle();
         style.alignment = TextAnchor.UpperRight;
         GUI.Label(new Rect(5, 14, Screen.width - 10, 100),
             string.Format(
@@ -241,7 +259,7 @@ public class PlayerScript : MonoBehaviour
                 "<color=white>M</color>-music {1} " +
                 "<color=white>S</color>-sound {2} " +
                 "<color=white>Esc</color>-exit</size></color>",
-                OnOff(Time.timeScale > 0), OnOff(!gameData.music), OnOff(!gameData.sound)), style);
+                OnOff(Time.timeScale > 0), OnOff(!gameData.music), OnOff(!gameData.sound)), style);*/
     }
 
     string OnOff(bool boolVal)
