@@ -23,6 +23,8 @@ public class PlayerScript : MonoBehaviour
     static bool gameStarted = false;
     AudioSource audioSrc;
     public AudioClip pointSound;
+    public Behaviour pauseCanvas;
+
     int requiredPointsToBall
     {
         get 
@@ -101,7 +103,7 @@ public class PlayerScript : MonoBehaviour
                 gameData.SavePlayers(gameData.topPlayers);
 
                 gameData.Reset();
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("Menu");
             }
             
         }
@@ -194,6 +196,7 @@ public class PlayerScript : MonoBehaviour
         level = gameData.level;
         SetMusic();
         StartLevel();
+        pauseCanvas.enabled = false;
     }
 
     void Update()
@@ -214,15 +217,17 @@ public class PlayerScript : MonoBehaviour
         {
             gameData.sound = !gameData.sound;
         }
-        if (Input.GetButtonDown("Pause"))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (Time.timeScale > 0)
             {
                 Time.timeScale = 0;
+                pauseCanvas.enabled = true;
             }
             else
             {
                 Time.timeScale = 1;
+                pauseCanvas.enabled = false;
             }
         }
         if (Input.GetKeyDown(KeyCode.N))
@@ -265,5 +270,22 @@ public class PlayerScript : MonoBehaviour
     string OnOff(bool boolVal)
     {
         return boolVal ? "off" : "on";
+    }
+
+    public void StartNewGame() 
+    {
+        pauseCanvas.enabled = false;
+        Time.timeScale = 1;
+        gameData.Reset();
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void ExitGame()
+    {
+        pauseCanvas.enabled = false;
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
