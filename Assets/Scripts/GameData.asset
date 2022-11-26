@@ -20,3 +20,6 @@ MonoBehaviour:
   points: 0
   pointsToBall: 0
   playerName: no_name
+  firstOpen: 0
+  isNewBestResult: 0
+  gratsText: 

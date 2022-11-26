@@ -17,6 +17,10 @@ public class GameDataScript : ScriptableObject
     public int pointsToBall = 0;
     public string playerName = "no_name";
 
+    public bool firstOpen = true;
+    public bool isNewBestResult = false;
+    public string gratsText = "";
+
     public List<KeyValuePair<string, int>> topPlayers = new List<KeyValuePair<string, int>>(6);
    
     public void Reset()

@@ -16,6 +16,10 @@ public class MenuControls : MonoBehaviour
     public Text player3;
     public Text player4;
     public Text player5;
+    public Behaviour exitButton;
+    public Behaviour exitText;
+    public Behaviour congratsText;
+    public Text congrats;
 
     public void PlayPressed()
     {
@@ -24,7 +28,13 @@ public class MenuControls : MonoBehaviour
 
     public void ExitPressed()
     {
+        gameData.playerName = "no_name";
+        gameData.firstOpen = true;
+        gameData.isNewBestResult = false;
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     public void SaveName() 
@@ -34,6 +44,26 @@ public class MenuControls : MonoBehaviour
 
     public void Start()
     {
+        if (gameData.firstOpen)
+        {
+            exitButton.enabled = false;
+            exitText.enabled = false;
+            gameData.firstOpen = false;
+        }
+        else
+        {
+            exitButton.enabled = true;
+            exitText.enabled = true;
+        }
+        if (!gameData.isNewBestResult)
+        {
+            congratsText.enabled = false;
+        }
+        else
+        {
+            congratsText.enabled = true;
+            congrats.text = gameData.gratsText;
+        }
         gameData.LoadPlayers();
         Debug.Log(gameData.topPlayers.Count);
         if (gameData.topPlayers.Count == 0) 

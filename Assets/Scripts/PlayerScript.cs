@@ -102,6 +102,16 @@ public class PlayerScript : MonoBehaviour
 
                 gameData.SavePlayers(gameData.topPlayers);
 
+                if (gameData.topPlayers.Contains(new KeyValuePair<string, int>(gameData.playerName, gameData.points)))
+                {
+                    gameData.gratsText = "Congratulations! New best results by "+ gameData.playerName +" with " + gameData.points + " points!";
+                    gameData.isNewBestResult = true;
+                }
+                else
+                {
+                    gameData.isNewBestResult = false;
+                }
+
                 gameData.Reset();
                 SceneManager.LoadScene("Menu");
             }
