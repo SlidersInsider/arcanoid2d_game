@@ -20,6 +20,6 @@ MonoBehaviour:
   points: 0
   pointsToBall: 0
   playerName: no_name
-  firstOpen: 0
+  firstOpen: 1
   isNewBestResult: 0
-  gratsText: 
+  gratsText: Congratulations! New best results by max with 360 points!
