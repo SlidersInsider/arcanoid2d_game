@@ -1156,6 +1156,8 @@ MonoBehaviour:
   greenPrefab: {fileID: 8925130798039081879, guid: 95094d3801b29f74f98cc76f9a50d441, type: 3}
   yellowPrefab: {fileID: 8870145418250393885, guid: 8c37c7ce4a3dcb24b9d5dfd789ab3351, type: 3}
   ballPrefab: {fileID: 2902394986801827305, guid: d59cbbeebb048994c9c72c0f09bb96c0, type: 3}
+  bonusPrefab: {fileID: 8925130798039081879, guid: 635f998639e080b4a8a0de0898f58cd1, type: 3}
+  XOPrefab: {fileID: 8767412973602072056, guid: 51be21b6a88d6a342b4c12610ff9e12b, type: 3}
   gameData: {fileID: 11400000, guid: 704e55063aa69934399d0d895b98c1d1, type: 2}
   pointSound: {fileID: 8300000, guid: 4aeefa5609bb8f94c988cddc923ccd2b, type: 3}
   pauseCanvas: {fileID: 834552538}
@@ -1370,7 +1372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489908042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.08, y: -0.08, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

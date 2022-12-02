@@ -78,4 +78,14 @@ public class GameDataScript : ScriptableObject
             file.Close();
         }
     }
+
+    public Dictionary<string, int> BonusDistribution = new Dictionary<string, int>()
+    {
+        {"Bonus", 10},
+        {"Slow", 20}, 
+        {"Fast", 20}, 
+        {"Plus1", 30}, 
+        {"Plus2", 15}, 
+        {"Plus10", 5} 
+    };
 }

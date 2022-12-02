@@ -57,12 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MenuControls.cs" />
-    <Compile Include="Assets\Scripts\PlayerScript.cs" />
-    <Compile Include="Assets\Scripts\GameDataScript.cs" />
-    <Compile Include="Assets\Scripts\BlockScript.cs" />
-    <Compile Include="Assets\Scripts\BallScript.cs" />
-  </ItemGroup>
-  <ItemGroup>
+     <Compile Include="Assets\Scripts\Plus1.cs" />
+     <Compile Include="Assets\Scripts\BonusSlow.cs" />
+     <Compile Include="Assets\Scripts\BonusFast.cs" />
+     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\GameDataScript.cs" />
+     <Compile Include="Assets\Scripts\BonusBlockScript.cs" />
+     <Compile Include="Assets\Scripts\BlockScript.cs" />
+     <Compile Include="Assets\Scripts\BonusBase.cs" />
+     <Compile Include="Assets\Scripts\BallScript.cs" />
+     <Compile Include="Assets\Scripts\Plus2.cs" />
+     <Compile Include="Assets\Scripts\Plus10.cs" />
+     <Compile Include="Assets\Scripts\XOScript.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Programming\Unity\UnityEditor\2021.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
