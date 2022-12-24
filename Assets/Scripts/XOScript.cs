@@ -20,6 +20,7 @@ public class XOScript : MonoBehaviour
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
 
+    // обрабатываем касание блока XO
     private void OnCollisionEnter2D(Collision2D collision)
     {
         textComponent = textObject.GetComponent<Text>();

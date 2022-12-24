@@ -10,12 +10,12 @@ public class Plus1 : BonusBase
 
     Rigidbody2D rb;
 
+    // добавляем +1 шар
     public override void BonusActivate()
     {
         gameData.balls++;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSrc = Camera.main.GetComponent<AudioSource>();
@@ -24,12 +24,8 @@ public class Plus1 : BonusBase
         rb.AddForce(new Vector2(0, -50));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    // активируем бонус
     private void OnCollisionEnter2D(Collision2D collision)
     {
         BonusActivate();

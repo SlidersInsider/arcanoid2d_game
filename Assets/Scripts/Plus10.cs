@@ -12,6 +12,7 @@ public class Plus10 : BonusBase
 
     static ContactFilter2D contactFilter = new ContactFilter2D();
 
+    // добавляем +10 шаров
     public override void BonusActivate()
     {
         gameData.balls += 10;
@@ -37,7 +38,6 @@ public class Plus10 : BonusBase
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSrc = Camera.main.GetComponent<AudioSource>();
@@ -46,12 +46,7 @@ public class Plus10 : BonusBase
         rb.AddForce(new Vector2(0, -50));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // активируем бонус
     private void OnCollisionEnter2D(Collision2D collision)
     {
         BonusActivate();

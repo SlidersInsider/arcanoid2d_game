@@ -21,27 +21,32 @@ public class MenuControls : MonoBehaviour
     public Behaviour congratsText;
     public Text congrats;
 
+    // запуск игры
     public void PlayPressed()
     {
         SceneManager.LoadScene("MainScene");
     }
 
+    // вызод из игры и сброс всех параметров
     public void ExitPressed()
     {
         gameData.playerName = "no_name";
         gameData.firstOpen = true;
         gameData.isNewBestResult = false;
+        gameData.Reset();
         Application.Quit();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
 
+    // сохранение имени игрока
     public void SaveName() 
     {
         gameData.playerName = inputNameText.text;
     }
 
+    // при запуске игры отображение списка и лучших результатов
     public void Start()
     {
         if (gameData.firstOpen)
@@ -68,11 +73,11 @@ public class MenuControls : MonoBehaviour
         Debug.Log(gameData.topPlayers.Count);
         if (gameData.topPlayers.Count == 0) 
         {
-            player5.text = "1. ";
-            player4.text = "2. ";
+            player5.text = "5. ";
+            player4.text = "4. ";
             player3.text = "3. ";
-            player2.text = "4. ";
-            player1.text = "5. ";
+            player2.text = "2. ";
+            player1.text = "1. ";
         }
         if (gameData.topPlayers.Count == 1)
         {

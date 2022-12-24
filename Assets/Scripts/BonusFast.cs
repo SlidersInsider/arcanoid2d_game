@@ -10,6 +10,7 @@ public class BonusFast : BonusBase
 
     Rigidbody2D rb;
 
+    // создаем нужный нам бонус быстрого шарика
     public override void BonusActivate()
     {
         if (gameData.sound)
@@ -24,7 +25,6 @@ public class BonusFast : BonusBase
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSrc = Camera.main.GetComponent<AudioSource>();
@@ -33,12 +33,7 @@ public class BonusFast : BonusBase
         rb.AddForce(new Vector2(0, -50));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // активируем наш бонус быстрого шарика
     private void OnCollisionEnter2D(Collision2D collision)
     {
         BonusActivate();

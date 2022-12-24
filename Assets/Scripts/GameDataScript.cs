@@ -31,6 +31,7 @@ public class GameDataScript : ScriptableObject
         pointsToBall = 0;
     }
 
+    // тот же самый сброс параметром только с именем
     public void ResetWithName()
     {
         level = 1;
@@ -60,6 +61,7 @@ public class GameDataScript : ScriptableObject
         sound = PlayerPrefs.GetInt("sound", 1) == 1;
     }
 
+    // сохранение результатов лучших игроков в файл
     public void SavePlayers(List<KeyValuePair<string, int>> newTopPlayers)
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -68,6 +70,7 @@ public class GameDataScript : ScriptableObject
         file.Close();
     }
 
+    // загрузка лучших результатов из файла
     public void LoadPlayers()
     {
         if (File.Exists(Application.persistentDataPath + "/topPlayers.gd"))
@@ -79,6 +82,7 @@ public class GameDataScript : ScriptableObject
         }
     }
 
+    // список всех доступных бонусов
     public Dictionary<string, int> BonusDistribution = new Dictionary<string, int>()
     {
         {"Bonus", 10},

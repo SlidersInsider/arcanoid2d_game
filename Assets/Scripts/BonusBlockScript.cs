@@ -23,7 +23,7 @@ public class BonusBlockScript : MonoBehaviour
 
     private System.Random r; 
 
-    // Start is called before the first frame update
+    // здесь мы распределяем бонусы
     void Start()
     {
         r = new System.Random(); 
@@ -39,12 +39,7 @@ public class BonusBlockScript : MonoBehaviour
         sum = x; 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    // спавним нужные нам бонусы
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (gameData.sound)

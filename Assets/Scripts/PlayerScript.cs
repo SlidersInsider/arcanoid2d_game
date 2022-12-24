@@ -44,6 +44,7 @@ public class PlayerScript : MonoBehaviour
     public float GetYMax() => yMaxS; 
     public float GetXMax() => xMaxS; 
 
+    // проверка выполненич условий для активации бонуса XO
     public void CheckXO(int points)
     {
         var xo = GameObject.FindGameObjectsWithTag("XO"); 
@@ -97,6 +98,10 @@ public class PlayerScript : MonoBehaviour
         bg.sprite = Resources.Load(level.ToString("d2"), typeof(Sprite)) as Sprite;
     }
 
+    // корутина которая обрабатыевает падение мяча за пределы
+    // в данном случае если был разрушен последния мяч, то 
+    // проверяется лучший ли это результат и выполняется 
+    // соответствующее действие, либо запись в файл, либо ничего
     IEnumerator BallDestriyedCoroutine()
     {
         yield return new WaitForSeconds(0.1f);
@@ -201,6 +206,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    // Создание блоков при старте уровня
     void StartLevel()
     {
         SetBackground();
@@ -284,6 +290,7 @@ public class PlayerScript : MonoBehaviour
         gameData.Save();
     }
 
+    // отрисовка нужного гуя
     private void OnGUI()
     {
         GUI.Label(new Rect(5, 4, Screen.width - 10, 100), 
@@ -307,6 +314,7 @@ public class PlayerScript : MonoBehaviour
         return boolVal ? "off" : "on";
     }
 
+    // старт новой игры
     public void StartNewGame() 
     {
         pauseCanvas.enabled = false;
@@ -315,9 +323,14 @@ public class PlayerScript : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
+    // выход из игры
     public void ExitGame()
     {
         pauseCanvas.enabled = false;
+        gameData.playerName = "no_name";
+        gameData.firstOpen = true;
+        gameData.isNewBestResult = false;
+        gameData.Reset();
         Application.Quit();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

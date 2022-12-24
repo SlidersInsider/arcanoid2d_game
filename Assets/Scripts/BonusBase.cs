@@ -18,6 +18,7 @@ public class BonusBase : MonoBehaviour
 
     Rigidbody2D rb;
 
+    // просто функция активации бонуса, на которой дается 100 очков
     public virtual void BonusActivate()
     {
         gameData.points += 100;
@@ -27,7 +28,6 @@ public class BonusBase : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSrc = Camera.main.GetComponent<AudioSource>();
@@ -36,12 +36,8 @@ public class BonusBase : MonoBehaviour
         rb.AddForce(new Vector2(0, -50));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    // обработка поимки бонуса
     private void OnCollisionEnter2D(Collision2D collision)
     {
         BonusActivate();
